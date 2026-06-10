@@ -3,6 +3,10 @@ import joblib
 import pandas as pd
 import plotly.express as px
 
+# ---- App Header ----
+st.markdown("<h1 style='text-align:center;'>📊 ReviewPulse</h1>", unsafe_allow_html=True)
+st.write("Analyze customer reviews instantly with ML-powered sentiment analysis.")
+
 # Load pre-trained model and vectorizer
 model = joblib.load("sentiment_model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
@@ -10,10 +14,6 @@ vectorizer = joblib.load("vectorizer.pkl")
 # Keep history in session state
 if "history" not in st.session_state:
     st.session_state["history"] = []
-
-# Streamlit UI
-st.title("Sentiment Analysis Demo")
-st.write("Type a movie review or upload a file to analyze.")
 
 # ---- Single Review Input ----
 user_input = st.text_area("Enter your review here:")
