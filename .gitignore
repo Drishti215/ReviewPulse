@@ -1,0 +1,12 @@
+# Ignore dataset
+IMDB Dataset.csv
+
+# Ignore training script
+train.py
+
+# Ignore virtual environment
+venv/
+
+# Ignore temporary files
+*.log
+*.tmp
