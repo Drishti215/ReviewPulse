@@ -12,12 +12,17 @@ st.sidebar.header("⚙️ Options")
 model_choice = st.sidebar.selectbox("Choose Sentiment Model", ["Logistic Regression", "Naive Bayes"])
 show_history = st.sidebar.checkbox("Show Analysis History", value=True)
 
-# Load pre-trained model and vectorizer
-# (for now, both choices load the same model — later you can add multiple models)
-model = joblib.load("sentiment_model.pkl")
+# ---- Load Models ----
+# Make sure you have logistic_model.pkl and naive_model.pkl saved in your repo
+if model_choice == "Logistic Regression":
+    model = joblib.load("logistic_model.pkl")
+elif model_choice == "Naive Bayes":
+    model = joblib.load("naive_model.pkl")
+
+# Vectorizer (same for both models)
 vectorizer = joblib.load("vectorizer.pkl")
 
-# Keep history in session state
+# ---- Session State for History ----
 if "history" not in st.session_state:
     st.session_state["history"] = []
 
