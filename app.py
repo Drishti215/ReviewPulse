@@ -7,7 +7,13 @@ import plotly.express as px
 st.markdown("<h1 style='text-align:center;'>📊 ReviewPulse</h1>", unsafe_allow_html=True)
 st.write("Analyze customer reviews instantly with ML-powered sentiment analysis.")
 
+# ---- Sidebar ----
+st.sidebar.header("⚙️ Options")
+model_choice = st.sidebar.selectbox("Choose Sentiment Model", ["Logistic Regression", "Naive Bayes"])
+show_history = st.sidebar.checkbox("Show Analysis History", value=True)
+
 # Load pre-trained model and vectorizer
+# (for now, both choices load the same model — later you can add multiple models)
 model = joblib.load("sentiment_model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
 
@@ -72,7 +78,7 @@ if uploaded_file is not None:
         st.error("CSV must have a 'review' column.")
 
 # ---- History Section ----
-if st.session_state["history"]:
+if show_history and st.session_state["history"]:
     st.subheader("Analysis History")
     for review, sentiment in st.session_state["history"]:
         st.write(f"Review: {review}")
